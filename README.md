@@ -1,6 +1,7 @@
 # SmartTask
 
 ## Overview
+## Happy Day TEAM :: Welcome To Mugisha Jean Claude practical assessment ** enjoy my super codebase hhh :):)
 
 **SmartTask** is a cross-platform productivity app designed for **Inkomoko**, enabling users to
 efficiently create, manage, and collaborate on tasks. The app functions seamlessly both online and
@@ -15,7 +16,7 @@ iOS.
 - **Modern & Responsive UI**: Adheres to Material Design (Android) and Human Interface Guidelines (
   iOS), with smooth animations and transitions.
 - **Offline Capabilities**: Users can create, edit, and delete tasks offline, with automatic
-  synchronization when back online (Powered by Hive for local storage).
+  synchronization when back online (Powered by Hive/Sqllite for local storage).
 - **Real-Time Sync & Collaboration**: Supports WebSockets / Firebase Firestore for live updates and
   collaborative task management.
 - **Search Functionality**: Enables filtering by name, date, priority, and tags, with optimized
@@ -40,7 +41,7 @@ iOS.
 
 ## Tech Stack
 
-- **Framework**: Flutter
+- **Framework**: Flutter &  Dart language
 - **State Management**: Riverpod
 - **Backend Services**: Firebase (Auth, Firestore, Crashlytics, Messaging)
 - **Local Storage**: Hive (for offline task management)
@@ -103,12 +104,13 @@ This project is licensed under the **MIT License**.
 
 ## Author
 
-Developed by **Mugisha JC** for **Inkomoko**.
+Developed by **Mugisha Jean Claude** for **Inkomoko Software Team [Practical Challenge]**.
 
 - GitHub: [mugishajc](https://github.com/mugishajc)
-- Email: [Your Email Here]
+- Email: [jcmugisha1@gmail.com]
+- Linkedin Profile: [https://www.linkedin.com/in/mugisha-jean-claude]
 
 ---
-🚀 **Inkomoko SmartTask** is designed to enhance productivity with a seamless, secure, and real-time
+🚀 **Inkomoko Smart Task** is designed to enhance productivity with a seamless, secure, and real-time
 collaborative experience.
 
