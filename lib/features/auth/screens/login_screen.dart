@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:smart_task/screens/home_screen.dart';
-import 'package:smart_task/services/auth_service.dart';
+import 'package:smart_task/core/services/AuthService.dart';
+import 'package:smart_task/features/home/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,11 +13,17 @@ class LoginScreen extends StatelessWidget {
           icon: const Icon(Icons.login),
           label: const Text("Sign in with Google"),
           onPressed: () async {
-            final user = await AuthService().signInWithGoogle();
-            if (user != null) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => HomeScreen(user: user)),
+            try {
+              final User? user = await AuthService().signInWithGoogle();
+              if (user != null) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen(user: user)),
+                );
+              }
+            } catch (e) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Login failed: $e')),
               );
             }
           },
@@ -27,5 +32,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
-

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_task/screens/login_screen.dart';
-import 'package:smart_task/services/auth_service.dart';
+import 'package:smart_task/core/services/AuthService.dart';
+import 'package:smart_task/features/auth/screens/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final User user;
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome, ${user.displayName}"),
+        title: Text("Welcome, ${user.displayName ?? 'User'}"),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
@@ -20,14 +20,14 @@ class HomeScreen extends StatelessWidget {
               await AuthService().signOut();
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const LoginScreen()),
+                MaterialPageRoute(builder: (context) => LoginScreen()),
               );
             },
           )
         ],
       ),
       body: Center(
-        child: Text("Email: ${user.email}"),
+        child: Text("Email: ${user.email ?? 'No email'}"),
       ),
     );
   }
