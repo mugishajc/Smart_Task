@@ -18,6 +18,7 @@ class LoginScreen extends StatelessWidget {
             try {
               
               final User? user = await AuthService().signInWithGoogle();
+              print(user);
               if (user != null) {
                 Navigator.pushReplacement(
                   context,

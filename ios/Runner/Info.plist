@@ -45,5 +45,30 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	<!-- 🔹 Google Sign-In Configuration -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.355980868693-dc1uiqlknp2hs02mhjokioq4djhg3k0u</string>
+			</array>
+		</dict>
+	</array>
+
+	<!-- 🔹 Needed for Firebase Authentication -->
+	<key>GoogleService-Info</key>
+	<string>GoogleService-Info.plist</string>
+
+	<!-- 🔹 iOS Background Modes (Optional for Firebase Cloud Messaging) -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+
 </dict>
 </plist>

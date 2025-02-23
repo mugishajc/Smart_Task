@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>355980868693-dc1uiqlknp2hs02mhjokioq4djhg3k0u.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.355980868693-dc1uiqlknp2hs02mhjokioq4djhg3k0u</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>355980868693-9532g1apas7pm6h85bm77s8dmvo677kh.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAht8mvcO_HcF8B3whAgn-80BGnHlWJBLk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>355980868693</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.inkomoko.smartTask</string>
+	<key>PROJECT_ID</key>
+	<string>inkomoko-smart-task</string>
+	<key>STORAGE_BUCKET</key>
+	<string>inkomoko-smart-task.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:355980868693:ios:526f226dc8b48c13d968dc</string>
+	<key>DATABASE_URL</key>
+	<string>https://inkomoko-smart-task-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
