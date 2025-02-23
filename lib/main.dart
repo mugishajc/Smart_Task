@@ -7,9 +7,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-  runApp(const MyApp());
+  try {
+    await Firebase.initializeApp();
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+    runApp(const MyApp());
+  } catch (e) {
+    print("Firebase initialization error: $e");
+
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -35,11 +40,18 @@ class AuthCheck extends StatelessWidget {
       builder: (context, snapshot) {
         print("tango: ${snapshot.data}");
         print("tango state: ${snapshot.connectionState}");
-        if (snapshot.hasData) {
-          return HomeScreen(user: snapshot.data!);
-        } else {
-          return LoginScreen();
+        if (snapshot.connectionState == ConnectionState.active) {
+          final User? user = snapshot.data;
+          if (user == null) {
+            return LoginScreen();
+          }
+          return HomeScreen(user: user);
         }
+        return const Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
       },
     );
   }
