@@ -4,6 +4,8 @@ import 'package:smart_task/features/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,6 +16,7 @@ class LoginScreen extends StatelessWidget {
           label: const Text("Sign in with Google"),
           onPressed: () async {
             try {
+              
               final User? user = await AuthService().signInWithGoogle();
               if (user != null) {
                 Navigator.pushReplacement(

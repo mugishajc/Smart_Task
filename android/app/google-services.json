@@ -12,7 +12,20 @@
           "package_name": "com.example.smart_task"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "355980868693-9532g1apas7pm6h85bm77s8dmvo677kh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smart_task",
+            "certificate_hash": "ccef5c17d7b2e9526047f1d6a86bc8c566f8af11"
+          }
+        },
+        {
+          "client_id": "355980868693-u5jkl2vbmtugjshm610douvhpkqovffh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBBH-p3Jb0YRmh3Qcr3YQq9zzPRQMJa0I0"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355980868693-u5jkl2vbmtugjshm610douvhpkqovffh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
