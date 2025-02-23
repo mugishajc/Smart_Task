@@ -1,5 +1,5 @@
 plugins {
-  id("com.google.gms.google-services") version "4.4.2" apply false
+    kotlin("android") version "2.1.10" apply false
 }
 
 allprojects {
