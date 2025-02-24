@@ -1,4 +1,4 @@
-package com.inkomoko.smart_task
+package com.example.smart_task
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome, ${user.displayName ?? 'User'}"),
+        title: Text("Welcome, ${user.email ?? 'User'}"),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
