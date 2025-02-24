@@ -1,22 +1,23 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_task/features/home/home_screen.dart';
-import 'features/auth/screens/login_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:smart_task/feature/startup/views/splash_screen.dart';
+import 'package:smart_task/utils/navigation.dart';
+import 'package:smart_task/utils/theme.dart';
+import 'package:nb_utils/nb_utils.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  try {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-    print('Firebase initialized');
-    runApp(const MyApp());
-  } catch (e) {
-    print("Firebase initialization error: $e");
 
+  try {
+    await Firebase.initializeApp();
+    await initialize();
+  } catch (e) {
+    print("Error during initialization: $e");
   }
+
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,36 +26,55 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Smart Task',
-      home: AuthCheck(), // Use AuthCheck to determine initial screen
+      debugShowCheckedModeBanner: false,
+      theme: themeData,
+      home:  SplashScreen(),
     );
   }
 }
 
-class AuthCheck extends StatelessWidget {
-  const AuthCheck({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, snapshot) {
-        print("tango: ${snapshot.data}");
-        print("tango state: ${snapshot.connectionState}");
-        if (snapshot.connectionState == ConnectionState.active) {
-          final User? user = snapshot.data;
-          if (user == null) {
-            return LoginScreen();
-          }
-          return HomeScreen(user: user);
-        }
-        return const Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
-      },
+extension Navigation on Widget {
+  Future<T?> push<T extends Object?>(BuildContext context) {
+    return Navigator.push<T>(
+      context,
+      MaterialPageRoute(builder: (context) => this),
     );
   }
+
+  Future<T?> pushAndRemoveUntil<T extends Object?>(BuildContext context) {
+    return Navigator.pushAndRemoveUntil<T>(
+      context,
+      MaterialPageRoute(builder: (context) => this),
+          (route) => false,
+    );
+  }
+
+  Future<dynamic> pushReplacement<T extends Object?>(BuildContext context) {
+    return Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => this),
+    );
+  }
+
+  void pop<T extends Object?>(BuildContext context, [T? result]) {
+    if (Navigator.canPop(context)) {
+      Navigator.pop<T>(context, result);
+    }
+  }
 }
+
+// Ensure themeData is correct (from your previous theme.dart)
+// Example (replace with your actual themeData):
+ThemeData themeData = ThemeData(
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: Colors.blue,
+    brightness: Brightness.light,
+    background: Colors.white,
+  ),
+  scaffoldBackgroundColor: Colors.white,
+  appBarTheme: const AppBarTheme(
+    surfaceTintColor: Colors.white,
+    elevation: 0,
+  ),
+);

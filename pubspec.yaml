@@ -43,6 +43,19 @@ dependencies:
   path_provider: ^2.1.2
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  change_app_package_name: ^1.0.0
+  cloud_firestore: ^4.17.5
+  connectivity_plus: ^2.2.1
+  expand_tap_area: ^1.1.0
+  flutter_datetime_picker:
+     git: https://github.com/Realank/flutter_datetime_picker.git
+  flutter_riverpod: ^1.0.0
+  google_fonts: ^2.1.0
+  logger: ^1.1.0
+  menu_button: ^1.4.2+1
+  nb_utils: ^4.3.0+4
+  table_calendar: ^3.0.3
+  url_launcher: ^6.1.11 # Or the latest version
 
 
 dev_dependencies:
