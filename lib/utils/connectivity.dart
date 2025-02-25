@@ -7,7 +7,7 @@ enum NetworkStatus { ONLINE, OFFLINE }
 final _initNetworkStatusProvider = FutureProvider<NetworkStatus>((ref) async {
   try {
     final result = await Connectivity().checkConnectivity();
-    return _mapConnectivityResultToNetworkStatus(result);
+    return _mapConnectivityResultToNetworkStatus(result.first);
   } catch (e) {
     // Handle error (e.g., log, show error message)
     print('Error checking connectivity: $e');
@@ -31,7 +31,7 @@ final networkStatusProvider = StreamProvider<NetworkStatus>((ref) {
   }
 
   final subscription = Connectivity().onConnectivityChanged.listen((result) {
-    controller.add(_mapConnectivityResultToNetworkStatus(result));
+    controller.add(_mapConnectivityResultToNetworkStatus(result.first));
   });
 
   ref.onDispose(() {
