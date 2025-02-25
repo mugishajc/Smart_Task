@@ -1,20 +1,21 @@
 import 'dart:async';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 enum NetworkStatus { ONLINE, OFFLINE }
 
+// Initial network status provider (checks once on app launch)
 final _initNetworkStatusProvider = FutureProvider<NetworkStatus>((ref) async {
   try {
-    final result = await Connectivity().checkConnectivity();
-    return _mapConnectivityResultToNetworkStatus(result.first);
+    final result = await InternetConnectionChecker().hasConnection;
+    return result ? NetworkStatus.ONLINE : NetworkStatus.OFFLINE;
   } catch (e) {
-    // Handle error (e.g., log, show error message)
     print('Error checking connectivity: $e');
-    return NetworkStatus.OFFLINE; // Default to OFFLINE on error
+    return NetworkStatus.OFFLINE;
   }
 });
 
+// Stream provider to listen for internet connection changes
 final networkStatusProvider = StreamProvider<NetworkStatus>((ref) {
   final controller = StreamController<NetworkStatus>();
 
@@ -26,12 +27,14 @@ final networkStatusProvider = StreamProvider<NetworkStatus>((ref) {
   if (initialStatus != null) {
     controller.sink.add(initialStatus);
   } else {
-    // Handle initial null state (e.g., add a loading state)
     print("Initial network status is null");
   }
 
-  final subscription = Connectivity().onConnectivityChanged.listen((result) {
-    controller.add(_mapConnectivityResultToNetworkStatus(result.first));
+  final subscription = InternetConnectionChecker().onStatusChange.listen((status) {
+    final networkStatus = status == InternetConnectionStatus.connected
+        ? NetworkStatus.ONLINE
+        : NetworkStatus.OFFLINE;
+    controller.add(networkStatus);
   });
 
   ref.onDispose(() {
@@ -40,13 +43,3 @@ final networkStatusProvider = StreamProvider<NetworkStatus>((ref) {
 
   return controller.stream;
 });
-
-NetworkStatus _mapConnectivityResultToNetworkStatus(ConnectivityResult result) {
-  switch (result) {
-    case ConnectivityResult.wifi:
-    case ConnectivityResult.mobile:
-      return NetworkStatus.ONLINE;
-    default:
-      return NetworkStatus.OFFLINE;
-  }
-}

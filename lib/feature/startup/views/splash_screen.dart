@@ -11,6 +11,8 @@ import 'package:smart_task/utils/navigation.dart';
 import 'package:smart_task/utils/utils.dart';
 
 class SplashScreen extends BaseView {
+  SplashScreen({super.key});
+
   @override
   BaseViewState<SplashScreen> createState() => _SplashScreenState();
 }
