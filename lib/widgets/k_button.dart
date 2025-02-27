@@ -3,7 +3,7 @@ import 'package:smart_task/utils/utils.dart';
 
 // _KButton
 class _KButton extends StatelessWidget {
-  _KButton({
+  const _KButton({
     required this.child,
     required this.onPressed,
     this.border,
@@ -40,7 +40,7 @@ class _KButton extends StatelessWidget {
 class KFilledButton extends _KButton {
   KFilledButton({
     required String buttonText,
-    required VoidCallback onPressed,
+    required super.onPressed,
     Color buttonColor = InkomokoSmartTaskColors.primary,
   }) : super(
     child: Builder(
@@ -55,11 +55,10 @@ class KFilledButton extends _KButton {
         );
       },
     ),
-    onPressed: onPressed,
     backgroundColor: buttonColor,
     height: 84, //fixed height
     border: Border.all(
-      color: ListifyTheme.darkMode()
+      color: SmartTaskTheme.darkMode()
           ? InkomokoSmartTaskColors.white
           : InkomokoSmartTaskColors.charcoal,
     ),
@@ -68,7 +67,7 @@ class KFilledButton extends _KButton {
   KFilledButton.iconText({
     required IconData icon,
     required String buttonText,
-    required VoidCallback onPressed,
+    required super.onPressed,
     Color buttonColor = InkomokoSmartTaskColors.primary,
   }) : super(
     child: Builder(
@@ -88,7 +87,6 @@ class KFilledButton extends _KButton {
         );
       },
     ),
-    onPressed: onPressed,
     backgroundColor: buttonColor,
     height: 84, //fixed height
   );
@@ -98,7 +96,7 @@ class KFilledButton extends _KButton {
 class KOutlinedButton extends _KButton {
   KOutlinedButton({
     required String buttonText,
-    required VoidCallback onPressed,
+    required super.onPressed,
     TextStyle? textStyle,
     Color? borderColor,
   }) : super(
@@ -114,12 +112,11 @@ class KOutlinedButton extends _KButton {
         );
       },
     ),
-    onPressed: onPressed,
     backgroundColor: InkomokoSmartTaskColors.transparent,
     height: 84, //fixed height
     border: Border.all(
       color: borderColor ??
-          (ListifyTheme.darkMode()
+          (SmartTaskTheme.darkMode()
               ? InkomokoSmartTaskColors.white
               : InkomokoSmartTaskColors.charcoal),
     ),
@@ -136,7 +133,7 @@ class KOutlinedButton extends _KButton {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (assetIcon != null)
-              Container(
+              SizedBox(
                 height: InkomokoSmartTaskSize.height(context, 34),
                 width: InkomokoSmartTaskSize.width(context, 34),
                 child: Image.asset(assetIcon),
@@ -155,7 +152,7 @@ class KOutlinedButton extends _KButton {
     backgroundColor: InkomokoSmartTaskColors.transparent,
     height: 84, //fixed height
     border: Border.all(
-      color: ListifyTheme.darkMode()
+      color: SmartTaskTheme.darkMode()
           ? InkomokoSmartTaskColors.white
           : InkomokoSmartTaskColors.charcoal,
     ),
@@ -167,7 +164,7 @@ class KTextButton extends _KButton {
   KTextButton({
     required String buttonText,
     TextStyle? buttonTextStyle,
-    required VoidCallback onPressed,
+    required super.onPressed,
     TextAlign textAlign = TextAlign.center,
   }) : super(
     child: Builder(
@@ -179,7 +176,6 @@ class KTextButton extends _KButton {
         );
       },
     ),
-    onPressed: onPressed,
     height: null,
     backgroundColor: InkomokoSmartTaskColors.transparent,
   );
@@ -188,7 +184,7 @@ class KTextButton extends _KButton {
     required String buttonText,
     TextStyle? buttonTextStyle,
     String? assetIcon,
-    required VoidCallback onPressed,
+    required super.onPressed,
   }) : super(
     child: Builder(
       builder: (context) {
@@ -212,7 +208,6 @@ class KTextButton extends _KButton {
         );
       },
     ),
-    onPressed: onPressed,
     backgroundColor: InkomokoSmartTaskColors.transparent,
     height: null,
   );

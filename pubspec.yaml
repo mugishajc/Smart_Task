@@ -35,27 +35,27 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  firebase_core: ^2.32.0
-  firebase_auth: ^4.16.0
-  google_sign_in: ^6.2.1
-  firebase_crashlytics: ^3.5.7
+  firebase_core: ^3.9.0
+  firebase_auth: ^5.3.4
+  google_sign_in: ^6.2.2
+  firebase_crashlytics: ^4.3.4
   sqflite: ^2.3.0
   path_provider: ^2.1.2
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   change_app_package_name: ^1.0.0
-  cloud_firestore: ^4.17.5
+  cloud_firestore: ^5.6.5
   expand_tap_area: ^1.1.0
   # flutter_datetime_picker:
   #    git: https://github.com/Realank/flutter_datetime_picker.git
-  flutter_riverpod: ^1.0.0
+  flutter_riverpod: ^2.6.1
   # google_fonts: ^2.1.0
-  logger: ^1.1.0
+  logger: ^2.5.0
   menu_button: ^1.4.2+1
   # nb_utils: ^4.3.0+4
   table_calendar: ^3.0.3
   url_launcher: ^6.1.11 # Or the latest version
-  internet_connection_checker: ^1.0.0+1
+  internet_connection_checker_plus: ^2.7.0
   google_fonts: ^6.2.1
   nb_utils: ^7.1.2
   flutter_datetime_picker_plus: ^2.2.0
@@ -82,6 +82,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/screenshots/
+    - assets/icons/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

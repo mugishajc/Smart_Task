@@ -16,12 +16,14 @@ class TaskRepository {
   final Ref ref;
 
   static Provider<TaskRepository> get provider => _taskRepoProvider;
-
-  final CollectionReference tasksCollection = FirebaseFirestore.instance.collection('tasks');
+  final CollectionReference tasksCollection =
+      FirebaseFirestore.instance.collection('tasks');
 
   CollectionReference get userTasksCollection {
-    Log.info("User UID: ${getStringAsync(USER_UID)}");
-    return tasksCollection.doc(getStringAsync(USER_UID)).collection('usertasks');
+    String userUID = getStringAsync(USER_UID);
+    Log.info("User UID Retrieved: $userUID");
+    Log.info("Firestore Path: tasks/$userUID/usertasks");
+    return tasksCollection.doc(userUID).collection('usertasks');
   }
 
   Stream<List<Todo>> pendingTasks() {
@@ -38,33 +40,42 @@ class TaskRepository {
     return userTasksQuery.snapshots().map(parseSnapshot);
   }
 
-  Future<void> createNewTask(String title, description, dateTime, priority) async {
+  Future<void> createNewTask(
+      String title, description, dateTime, priority) async {
     try {
       DocumentReference documentReferencer = userTasksCollection.doc();
       await documentReferencer.set({
         "title": title,
         "description": description,
         "dateTime": dateTime != ""
-            ? DateFormat('hh:mm aa MMM dd,yyyy').parse(dateTime).millisecondsSinceEpoch
+            ? DateFormat('hh:mm aa MMM dd, yyyy')
+                .parse(dateTime)
+                .millisecondsSinceEpoch
             : DateTime.now().millisecondsSinceEpoch,
         "priority": priority == "" ? "Low" : priority,
         "subTask": [],
         "isCompleted": false,
       });
+      Log.info("Task created successfully.");
     } catch (e, stackTrace) {
       Log.error("Error creating task: $e");
       Log.error(stackTrace.toString());
-      throw e;
+      rethrow;
     }
   }
 
-  Future<void> updateTask(String uid, {String? title, String? description, String? dateTime, String? priority}) async {
+  Future<void> updateTask(String uid,
+      {String? title,
+      String? description,
+      String? dateTime,
+      String? priority}) async {
     try {
       Map<String, dynamic> updateData = {};
       if (title != null) updateData["title"] = title;
       if (description != null) updateData["description"] = description;
       if (dateTime != null) {
-        DateTime? parsedDateTime = DateFormat('hh:mm aa MMM dd,yyyy').tryParse(dateTime);
+        DateTime? parsedDateTime =
+            DateFormat('hh:mm aa MMM dd, yyyy').tryParse(dateTime);
         if (parsedDateTime != null) {
           updateData["dateTime"] = parsedDateTime.millisecondsSinceEpoch;
         }
@@ -76,18 +87,24 @@ class TaskRepository {
     } catch (e, stackTrace) {
       Log.error("Error updating task: $e");
       Log.error(stackTrace.toString());
-      throw e;
+      rethrow;
     }
   }
 
   Future<void> updateSubTask() async {
     try {
-      List<Map<String, dynamic>> subTaskMappedList = ref.read(taskDetailsProvider).subTask.map((subTask) => subTask.toMap()).toList();
-      await userTasksCollection.doc(ref.read(taskDetailsProvider).uid).update({"subTask": subTaskMappedList});
+      List<Map<String, dynamic>> subTaskMappedList = ref
+          .read(taskDetailsProvider)
+          .subTask
+          .map((subTask) => subTask.toMap())
+          .toList();
+      await userTasksCollection
+          .doc(ref.read(taskDetailsProvider).uid)
+          .update({"subTask": subTaskMappedList});
     } catch (e, stackTrace) {
       Log.error("Error updating subtasks: $e");
       Log.error(stackTrace.toString());
-      throw e;
+      rethrow;
     }
   }
 
@@ -97,7 +114,7 @@ class TaskRepository {
     } catch (e, stackTrace) {
       Log.error("Error completing task: $e");
       Log.error(stackTrace.toString());
-      throw e;
+      rethrow;
     }
   }
 
@@ -107,7 +124,7 @@ class TaskRepository {
     } catch (e, stackTrace) {
       Log.error("Error undoing complete task: $e");
       Log.error(stackTrace.toString());
-      throw e;
+      rethrow;
     }
   }
 
@@ -117,7 +134,7 @@ class TaskRepository {
     } catch (e, stackTrace) {
       Log.error("Error removing task: $e");
       Log.error(stackTrace.toString());
-      throw e;
+      rethrow;
     }
   }
 }

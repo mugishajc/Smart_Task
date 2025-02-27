@@ -13,7 +13,7 @@ import 'package:nb_utils/nb_utils.dart';
 import '../controllers/authentication_controller.dart';
 
 class SignupScreen extends BaseView {
-  SignupScreen({Key? key}) : super(key: key);
+  const SignupScreen({super.key});
 
   @override
   BaseViewState<SignupScreen> createState() => _SignupScreenState();
@@ -49,7 +49,7 @@ class _SignupScreenState extends BaseViewState<SignupScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(height: InkomokoSmartTaskSize.height(context, 288)),
-        Container(
+        SizedBox(
           width: InkomokoSmartTaskSize.width(context, 439),
           child: Text(
             "Not your everyday Todo app!",
@@ -82,17 +82,23 @@ class _SignupScreenState extends BaseViewState<SignupScreen> {
               ? InkomokoSmartTaskColors.spaceCadet
               : InkomokoSmartTaskColors.primary,
           onPressed: () {
-            if (!(authState is LoadingState)) {
+            if (authState is! LoadingState) {
               hideKeyboard(context);
               if (emailController.text.trim().isNotEmpty && emailController.text.trim().isValidEmail()) {
-                if (passwordController.text == confirmPasswordController.text) {
-                  ref.read(authenticationProvider.notifier).signUp(
-                    email: emailController.text,
-                    password: passwordController.text,
-                  );
+                if (passwordController.text.length >= 6) {
+                  if (passwordController.text == confirmPasswordController.text) {
+                    ref.read(authenticationProvider.notifier).signUp(
+                      email: emailController.text,
+                      password: passwordController.text,
+                    );
+                  } else {
+                    snackBar(context,
+                        title: "Password doesn't match",
+                        backgroundColor: InkomokoSmartTaskColors.charcoal);
+                  }
                 } else {
                   snackBar(context,
-                      title: "Password doesn't match",
+                      title: "Password should be at least 6 characters",
                       backgroundColor: InkomokoSmartTaskColors.charcoal);
                 }
               } else {

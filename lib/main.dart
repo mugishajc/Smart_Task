@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +13,8 @@ Future<void> main() async {
 
   try {
     await Firebase.initializeApp();
+    FirebaseFirestore.instance.settings = Settings(persistenceEnabled: true);
+    // await FirebaseFirestore.instance.collection('test').add({"test": "success"}); // TODO Remove this
     await initialize();
   } catch (e) {
     print("Error during initialization: $e");
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
       title: 'Smart Task',
       debugShowCheckedModeBanner: false,
       theme: themeData,
-      home:  SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }
@@ -46,7 +49,7 @@ extension Navigation on Widget {
     return Navigator.pushAndRemoveUntil<T>(
       context,
       MaterialPageRoute(builder: (context) => this),
-          (route) => false,
+      (route) => false,
     );
   }
 

@@ -10,6 +10,8 @@ import 'package:smart_task/widgets/k_textfield.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class CreateTaskScreen extends BaseView {
+  const CreateTaskScreen({super.key});
+
   @override
   _CreateTaskScreenState createState() => _CreateTaskScreenState();
 }

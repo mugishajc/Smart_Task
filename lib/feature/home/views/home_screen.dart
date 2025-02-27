@@ -17,6 +17,8 @@ import '../../create_task/views/create_task_screen.dart';
 import '../controllers/tasks_controller.dart';
 
 class HomeScreen extends BaseView {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -67,9 +69,8 @@ class _HomeScreenState extends BaseViewState<HomeScreen> {
 
 class _AppBarBuilder extends StatelessWidget implements PreferredSizeWidget {
   _AppBarBuilder({
-    Key? key,
-  }) : preferredSize = Size.fromHeight(kToolbarHeight),
-        super(key: key);
+    super.key,
+  }) : preferredSize = Size.fromHeight(kToolbarHeight);
 
   @override
   final Size preferredSize;
@@ -121,9 +122,9 @@ class _AppBarBuilder extends StatelessWidget implements PreferredSizeWidget {
 
 class _PendingTasksBuilder extends StatelessWidget {
   const _PendingTasksBuilder({
-    Key? key,
+    super.key,
     required this.snapshot,
-  }) : super(key: key);
+  });
 
   final List<Todo> snapshot;
 
@@ -177,9 +178,9 @@ class _PendingTasksBuilder extends StatelessWidget {
 
 class _CompletedTasksBuilder extends StatelessWidget {
   const _CompletedTasksBuilder({
-    Key? key,
+    super.key,
     required this.snapshot,
-  }) : super(key: key);
+  });
 
   final List<Todo> snapshot;
 

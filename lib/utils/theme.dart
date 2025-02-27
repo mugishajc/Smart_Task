@@ -8,7 +8,7 @@ enum ThemeMode {
   DARK,
 }
 
-class ListifyTheme {
+class SmartTaskTheme {
   static var kThemeMode = ThemeMode.LIGHT;
 
   static bool darkMode() => kThemeMode == ThemeMode.DARK;
@@ -17,11 +17,11 @@ class ListifyTheme {
 ThemeData themeData = ThemeData(
   colorScheme: ColorScheme.fromSeed( // Using fromSeed for better defaults
     seedColor: InkomokoSmartTaskColors.primary,
-    brightness: ListifyTheme.darkMode() ? Brightness.dark : Brightness.light,
-    background: ListifyTheme.darkMode() ? InkomokoSmartTaskColors.spaceCadet : InkomokoSmartTaskColors.white, // Setting background here
+    brightness: SmartTaskTheme.darkMode() ? Brightness.dark : Brightness.light,
+    background: SmartTaskTheme.darkMode() ? InkomokoSmartTaskColors.spaceCadet : InkomokoSmartTaskColors.white, // Setting background here
   ),
   scaffoldBackgroundColor:
-  ListifyTheme.darkMode() ? InkomokoSmartTaskColors.spaceCadet : InkomokoSmartTaskColors.white,
+  SmartTaskTheme.darkMode() ? InkomokoSmartTaskColors.spaceCadet : InkomokoSmartTaskColors.white,
   primaryColor: InkomokoSmartTaskColors.primary,
   primarySwatch: InkomokoSmartTaskColors.createMaterialColor(InkomokoSmartTaskColors.primary),
   appBarTheme: AppBarTheme(
