@@ -5,6 +5,8 @@ import 'package:smart_task/feature/task_details/controllers/task_details_control
 import 'package:smart_task/feature/task_details/views/details_screen.dart';
 import 'package:smart_task/utils/navigation.dart';
 import 'package:smart_task/utils/utils.dart';
+import 'package:smart_task/utils/notification_service.dart';
+
 
 class TaskCard extends ConsumerWidget {
   TaskCard({
@@ -117,10 +119,13 @@ class TaskCard extends ConsumerWidget {
                 ),
                 InkWell(
                   onTap: () async {
-                    if (!task.isCompleted)
+                    if (!task.isCompleted){
                       ref.read(tasksProvider).completeTask(task.uid);
-                    else
+                      showNotification('Task Completed', '${task.title} has been completed.');
+                    }else{
                       ref.read(tasksProvider).undoCompleteTask(task.uid);
+                    }
+
                   },
                   child: Container(
                     margin: EdgeInsets.all(InkomokoSmartTaskSize.width(context, 36)), // Pass context

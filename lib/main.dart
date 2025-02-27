@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_task/feature/startup/views/splash_screen.dart';
-import 'package:smart_task/utils/navigation.dart';
-import 'package:smart_task/utils/theme.dart';
+import 'package:smart_task/utils/notification_service.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 Future<void> main() async {
@@ -19,6 +18,7 @@ Future<void> main() async {
   } catch (e) {
     print("Error during initialization: $e");
   }
+  await initNotifications();
 
   runApp(const ProviderScope(child: MyApp()));
 }
