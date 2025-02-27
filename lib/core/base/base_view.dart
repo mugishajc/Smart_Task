@@ -46,7 +46,7 @@ mixin _BaseView {
 }
 
 class BaseView extends ConsumerStatefulWidget {
-  BaseView({Key? key}) : super(key: key);
+  const BaseView({super.key});
 
   @override
   BaseViewState createState() => BaseViewState();

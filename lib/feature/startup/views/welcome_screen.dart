@@ -11,6 +11,8 @@ import '../../authentication/controllers/authentication_controller.dart';
 import '../../authentication/views/sign_up_screen.dart';
 
 class WelcomeScreen extends BaseView {
+  WelcomeScreen({super.key});
+
   @override
   BaseViewState<WelcomeScreen> createState() => _WelcomeScreenState();
 }
@@ -22,7 +24,7 @@ class _WelcomeScreenState extends BaseViewState<WelcomeScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(height: InkomokoSmartTaskSize.height(context, 288)),
-        Container(
+        SizedBox(
           width: InkomokoSmartTaskSize.width(context, 439),
           child: Text(
             "Start Using Inkomoko Smart Task App Today!",

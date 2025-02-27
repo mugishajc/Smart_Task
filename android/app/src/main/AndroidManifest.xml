@@ -46,4 +46,9 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Required for accessing APIs and maintaining connectivity. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Ensures stable network connection for app operations. -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 </manifest>
