@@ -23,7 +23,7 @@ class _SplashScreenState extends BaseViewState<SplashScreen> {
   }
 
   Future<void> _initialize() async {
-    await Future.delayed(const Duration(milliseconds: 1000), () async {
+    await Future.delayed(const Duration(milliseconds: 100), () async {
       if (getBoolAsync(NEW_INSTALL, defaultValue: true)) {
         await setValue(NEW_INSTALL, false);
         try {

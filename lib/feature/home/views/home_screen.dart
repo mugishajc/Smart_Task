@@ -137,7 +137,7 @@ class _PendingTasksBuilder extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "In Progress",
+                "Pending",
                 style: InkomokoSmartTaskTextStyle.bodyText2(context).copyWith(
                   color: InkomokoSmartTaskColors.charcoal.withOpacity(.71),
                 ),
