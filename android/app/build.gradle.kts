@@ -9,9 +9,10 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 dependencies {
-  implementation(platform("com.google.firebase:firebase-bom:33.9.0"))
-  implementation("com.google.firebase:firebase-auth")
-  implementation("com.google.firebase:firebase-analytics")
+    implementation(platform("com.google.firebase:firebase-bom:33.9.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-analytics")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
 }
 android {
     namespace = "com.example.smart_task"
@@ -21,6 +22,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -37,7 +39,7 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
-     signingConfigs {
+    signingConfigs {
         getByName("debug") {
             storeFile = file("${System.getProperty("user.home")}/.android/debug.keystore")
             storePassword = "android"
